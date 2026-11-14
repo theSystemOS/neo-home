@@ -197,6 +197,18 @@ export function objectiveScreen({ id, tab = "overview" }) {
   if (item.status === "verified") mobilePrimary = `<button class="btn btn-primary" data-action="objective-accept" data-id="${item.id}">${icon("check", 13)} Accept</button>`;
   if (["blocked", "parked", "rejected"].includes(item.status)) mobilePrimary = `<button class="btn btn-primary" data-action="objective-reopen" data-id="${item.id}">${icon("refresh", 13)} Reopen</button>`;
 
+  const canCompose = ["open", "claimed", "verified"].includes(item.status);
+  const composer = canCompose
+    ? `<form class="composer" data-composer data-id="${item.id}">
+        <div class="composer-head"><span class="tag tone-cyan">${icon("message", 12)} Contribute</span><span class="small faint">Writes one attributable contribution to this objective.</span></div>
+        <div class="composer-row">
+          <input name="body" placeholder="Propose, observe, or commit to something…" autocomplete="off" aria-label="Contribution" />
+          <select name="kind" aria-label="Contribution kind"><option value="proposal">Proposal</option><option value="observation">Observation</option><option value="commitment">Commitment</option></select>
+          <button class="btn btn-primary" type="submit">${icon("arrowRight", 13)} Add</button>
+        </div>
+      </form>`
+    : "";
+
   const main = `<div class="screen">
     ${head}
     ${meta}
@@ -206,6 +218,7 @@ export function objectiveScreen({ id, tab = "overview" }) {
       { id: "runs", label: "Runs", count: list.length },
       { id: "evidence", label: "Evidence", count: evidence.length },
     ])}
+    ${composer}
     ${content}
     <div class="mobile-actionbar">${mobilePrimary}<button class="btn btn-secondary" data-action="toggle-inspector">${icon("panel", 13)} More</button></div>
   </div>`;
@@ -231,9 +244,7 @@ export function objectiveScreen({ id, tab = "overview" }) {
       title: "Actions",
       iconName: "flag",
       body: `<div class="stack-sm">${actions.join("") || `<p class="small faint">This objective is settled. No further action is available.</p>`}</div>
-        ${disabledVerify && item.status === "claimed" ? `<p class="small faint" style="margin-top:9px;line-height:1.5">${liveRun ? "The operation is still running. Wait for it to end before attaching evidence." : "You own this objective. Another participant must verify it."}</p>` : ""}
-        <div class="divider"></div>
-        <p class="small faint" style="line-height:1.5">${esc(step.body)}</p>`,
+        ${disabledVerify && item.status === "claimed" ? `<p class="small faint" style="margin-top:9px;line-height:1.5">${liveRun ? "The operation is still running. Wait for it to end before attaching evidence." : "You own this objective. Another participant must verify it."}</p>` : ""}`,
     })}
     ${panel({
       title: "Participants",

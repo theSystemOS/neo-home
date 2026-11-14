@@ -39,6 +39,7 @@
   is live) → palette → run → `LG-003` verified with two references → accepted →
   decisions count updates; create project, objective, and participant; block and
   reopen; command palette search; all seven tour steps.
+- **Contribution composer:** the objective room writes a proposal, observation or commitment as one attributable record, then returns focus to the composer. The run timeline and the contribution record are the two conversation surfaces in this candidate.
 - **Captures:** `evidence/home.png`, `projects.png`, `project-board.png`,
   `objective.png`, `objective-verified.png`, `runs.png`, `run-live.png`,
   `participants.png`, `participant-atlas.png`, `decisions.png`, `evidence.png`,

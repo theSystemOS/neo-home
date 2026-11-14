@@ -14,6 +14,7 @@ import { bump, subscribe } from "./store.js";
 import { closePalette, openPalette } from "./palette.js";
 import { startTour } from "./tour.js";
 import { openModal, toast } from "./overlays.js";
+import { addContribution } from "./actions.js";
 import {
   acceptFlow,
   addParticipantFlow,
@@ -298,6 +299,22 @@ document.addEventListener("click", (event) => {
 });
 
 document.addEventListener("ade-help", showHelp);
+
+document.addEventListener("submit", (event) => {
+  const form = event.target.closest("[data-composer]");
+  if (!form) return;
+  event.preventDefault();
+  const id = form.dataset.id;
+  const body = form.querySelector('input[name="body"]')?.value.trim();
+  const kind = form.querySelector('select[name="kind"]')?.value || "proposal";
+  if (!body) {
+    toast({ title: "Nothing to add", body: "Write a proposal, observation, or commitment first.", tone: "red" });
+    return;
+  }
+  addContribution(id, { authorId: "mira", kind, body, refs: [] });
+  toast({ title: "Contribution added", body: `${kind} recorded against ${id}. Prototype state only.`, tone: "cyan" });
+  setTimeout(() => document.querySelector(`[data-composer][data-id="${id}"] input`)?.focus(), 30);
+});
 
 document.addEventListener("keydown", (event) => {
   const typing = event.target.closest("input, textarea, select, [contenteditable='true']");

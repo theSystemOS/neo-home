@@ -16,8 +16,8 @@ A desktop-first ADE composed of:
 - **Home** — position, what needs a person, one live run, projects, recent activity.
 - **Projects** — a portfolio of continuing directions with real standing counts.
 - **Project** — a five-column board by standing, decisions, and attributable activity.
-- **Objective** — intent, authority, conditions, contributions, runs, evidence, and
-  state-aware actions.
+- **Objective** — intent, authority, conditions, a contribution composer,
+  contributions, runs, evidence, and state-aware actions.
 - **Decisions** — verified work awaiting acceptance, open proposals, blocked,
   parked, and rejected paths.
 - **Runs** — the operation list and a run room with a real event timeline, grant,
