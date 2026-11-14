@@ -1,0 +1,18 @@
+neo-home
+Copyright (c) 2026 The ExOS Authors
+
+Design lineage
+--------------
+The visual language — translucent midnight panels, clipped corners, cyan edge
+accents, atmospheric depth, geometric participant marks — was developed in the
+Ascent interface by the ExOS project and is carried forward here by its authors.
+
+Typefaces
+---------
+Chakra Petch and JetBrains Mono are served from Google Fonts under the SIL Open
+Font License 1.1. They are not bundled with this repository. If the network is
+unavailable the surface falls back to the platform's system fonts.
+
+No third-party JavaScript is included. The background is a single original
+WebGL fragment shader. The record store and server use the Node.js standard
+library only.
